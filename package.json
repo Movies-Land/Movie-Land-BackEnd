@@ -1,0 +1,21 @@
+{
+  "name": "Movie-Land-BackEnd",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Movies-Land/Movie-Land-BackEnd.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Movies-Land/Movie-Land-BackEnd/issues"
+  },
+  "homepage": "https://github.com/Movies-Land/Movie-Land-BackEnd#readme"
+}
