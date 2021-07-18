@@ -17,5 +17,11 @@
   "bugs": {
     "url": "https://github.com/Movies-Land/Movie-Land-BackEnd/issues"
   },
-  "homepage": "https://github.com/Movies-Land/Movie-Land-BackEnd#readme"
+  "homepage": "https://github.com/Movies-Land/Movie-Land-BackEnd#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.13.3"
+  }
 }
