@@ -15,27 +15,26 @@ app.use(cors());
 
 app.use(express.json())
 
-const { myMovieModel } = require('./modules/homePageMovies')
 
+const getPopularMovieData = require('./modules/popularMovie')
+const getTopRatedMovieData = require('./modules/topRatedMovie')
+const getNowPlayingMovieData= require('./modules/nowPlayingMovie')
+const getUpcomingMovieData = require('./modules/upcomingMovie')
 
 const PORT = 3001
 
 
-//localhost:3001/movie?userEmail=ibrahem.sarayrah@gmail.com
-app.get('/movie', getMovieData)
+//localhost:3001/popularMovie
+app.get('/popularMovie', getPopularMovieData)
 
-function getMovieData(req, res) {
+//localhost:3001/topRatedMovie
+app.get('/topRatedMovie', getTopRatedMovieData)
 
-    let userEmail = req.query.userEmail
-  
-    myMovieModel.find({ email: userEmail }, function (error, userData) {
-      if (error) {
-        res.send(error)
-      } else {
-        res.send(userData[0].movie)
-      }
-    })
-  }
+//localhost:3001/nowPlayingMovie
+app.get('/nowPlayingMovie', getNowPlayingMovieData)
+
+//localhost:3001/upcomingMovie
+app.get('/upcomingMovie', getUpcomingMovieData )
 
 // http://localhost:3001/
 app.get('/', testHandler);
