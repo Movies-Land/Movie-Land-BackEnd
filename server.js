@@ -21,6 +21,7 @@ const getTopRatedMovieData = require('./modules/topRatedMovie')
 const getNowPlayingMovieData = require('./modules/nowPlayingMovie')
 const getUpcomingMovieData = require('./modules/upcomingMovie')
 const getMovieTrailerData = require('./modules/movieTrailer')
+const getSearchMovieData = require('./modules/SearchForMovie')
 
 const PORT = 3001
 
@@ -39,6 +40,9 @@ app.get('/upcomingMovie', getUpcomingMovieData)
 
 //localhost:3001/movieTrailer?movieId=497698
 app.get('/movieTrailer', getMovieTrailerData)
+
+//localhost:3001/searchForMovie?search=iron
+app.get('/searchForMovie',getSearchMovieData)
 
 // http://localhost:3001/
 app.get('/', testHandler);
