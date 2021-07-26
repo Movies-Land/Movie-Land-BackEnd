@@ -83,7 +83,7 @@ function seeding() {
 
   const jana = new userModel(
     {
-      email: 'janaosama1300@gmail.com', books: [
+      email: 'algourabrar@gmail.com', books: [
         {
           title: 'String',
           overview: 'String',
@@ -122,7 +122,7 @@ function addMovieToFavorites(req, res) {
     trailerKey,
     poster } = req.body
 
-  console.log(email);
+
 
   userModel.find({ email: email }, (error, items) => {
 
