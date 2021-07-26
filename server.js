@@ -122,6 +122,25 @@ function addMovieToFavorites(req, res) {
     trailerKey,
     poster } = req.body
 
+    const newMovie = new userModel(
+      {
+        email:email, movie: [
+          {
+            title: 'String',
+            overview: 'String',
+            release_date: 'String',
+            vote_average: 'String',
+            vote_count: 'String',
+            popularity: 'String',
+            movieId: 'String',
+            trailerKey: 'String',
+            poster: 'String',
+          },
+        ]
+      })
+  
+    newMovie.save()
+
 
 
   userModel.find({ email: email }, (error, items) => {
