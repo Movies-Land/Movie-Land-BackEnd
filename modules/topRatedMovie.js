@@ -7,7 +7,7 @@ module.exports = getTopRatedMovieData;
 
 function getTopRatedMovieData(req, res) {
 
-  let url = `https://api.themoviedb.org/3/movie/top_rated?api_key=3364da0f5f06ed4e038dcad748f160ca&language=en-US&page=1`;
+  let url = `https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.MOVIE_KEY}&language=en-US&page=1`;
 
     axios
       .get(url)

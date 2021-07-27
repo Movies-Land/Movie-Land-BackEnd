@@ -7,7 +7,7 @@ module.exports = getPopularMovieData;
 
 function getPopularMovieData(req, res) {
 
-  let url = `https://api.themoviedb.org/3/movie/popular?api_key=3364da0f5f06ed4e038dcad748f160ca&language=en-US&page=1`;
+  let url = `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.MOVIE_KEY}&language=en-US&page=1`;
 
     axios
       .get(url)
