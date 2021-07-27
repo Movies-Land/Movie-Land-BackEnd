@@ -79,38 +79,10 @@ const userSchema = new mongoose.Schema({
 
 const userModel = mongoose.model('user', userSchema)
 
-function seeding() {
-
-  const jana = new userModel(
-    {
-      email: 'algourabrar@gmail.com', books: [
-        {
-          title: 'String',
-          overview: 'String',
-          release_date: 'String',
-          vote_average: 'String',
-          vote_count: 'String',
-          popularity: 'String',
-          movieId: 'String',
-          trailerKey: 'String',
-          poster: 'String',
-        },
-      ]
-    })
-  jana.save()
-}
-
-
-// seeding();
-
-// const movieModal = mongoose.model('movie', movieSchema)
 
 app.post('/favoriteMovies', addMovieToFavorites)
 
 function addMovieToFavorites(req, res) {
-
-  // console.log(req.body);
-
   let { email,
     title,
     overview,
@@ -122,55 +94,45 @@ function addMovieToFavorites(req, res) {
     trailerKey,
     poster } = req.body
 
-    const newMovie = new userModel(
-      {
-        email:email, movie: [
-          {
-            title: 'String',
-            overview: 'String',
-            release_date: 'String',
-            vote_average: 'String',
-            vote_count: 'String',
-            popularity: 'String',
-            movieId: 'String',
-            trailerKey: 'String',
-            poster: 'String',
-          },
-        ]
-      })
-  
-    newMovie.save()
+  // console.log(req.body);
+  // console.log(title);
 
-
-
-  userModel.find({ email: email }, (error, items) => {
+  userModel.findOne({ email: email }, (error, userData) => {
 
     if (error) {
       res.send(error);
 
     }
 
-    else {
-      items[0].movies.push({
-        title: title,
-        overview: overview,
-        release_date: release_date,
-        vote_average: vote_average,
-        vote_count: vote_count,
-        popularity: popularity,
-        movieId: movieId,
-        trailerKey: trailerKey,
-        poster: poster,
-      })
+    else if (userData === null) {
 
-      console.log(items[0].movies);
-
-      items[0].save();
+      userData = new userModel(
+        {
+          email: email,
+          movie: []
+        })
     }
 
-    res.send(items[0].movies)
+    let newData = {
+      title: title,
+      overview: overview,
+      release_date: release_date,
+      vote_average: vote_average,
+      vote_count: vote_count,
+      popularity: popularity,
+      movieId: movieId,
+      trailerKey: trailerKey,
+      poster: poster,
+    }
+
+    // console.log(newData);
+    userData.movies.push(newData)
+    userData.save()
+    res.send(userData)
   })
+
 }
+
 
 
 function getDataFromFavorites(req, res) {
@@ -203,12 +165,12 @@ function deleteMovie(req, res) {
   let index = Number(req.params.movieIdx);
   let userEmail = req.query.userEmail;
 
-  console.log(req.query);
+  // console.log(req.query);
 
   userModel.find({ email: userEmail }, (error, userData) => {
 
-    if (error) { 
-      res.send('cant find user') 
+    if (error) {
+      res.send('cant find user')
     }
 
     else {
@@ -216,7 +178,7 @@ function deleteMovie(req, res) {
       let newUserData = userData[0].movies.filter((item, idx) => {
         if (idx !== index) { return item }
       })
-    
+
       userData[0].movies = newUserData
       userData[0].save();
       res.send(userData[0].movies)
@@ -224,6 +186,5 @@ function deleteMovie(req, res) {
 
   })
 }
-
 
 app.listen(PORT, () => console.log(`listening on ${PORT}`));
