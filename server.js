@@ -7,7 +7,7 @@ const express = require('express');
 const cors = require('cors');
 
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/MovieLand', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.ATLAS_MONGO, { useNewUrlParser: true, useUnifiedTopology: true });
 
 const app = express();
 
@@ -24,7 +24,7 @@ const getMovieTrailerData = require('./modules/movieTrailer')
 const getSearchMovieData = require('./modules/SearchForMovie')
 
 
-const PORT = 3001
+const PORT = process.env.PORT;
 
 
 //localhost:3001/popularMovie

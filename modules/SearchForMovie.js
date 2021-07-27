@@ -8,7 +8,7 @@ module.exports = getSearchMovieData;
 function getSearchMovieData(req, res) {
   let search=req.query.search
 
-  let url = `https://api.themoviedb.org/3/search/movie?api_key=a4c7218e93f1dee30eff2f6ceb6e3c5e&query=${search}&language=en-US&page=1&include_adult=false`;
+  let url = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.MOVIE_KEY}&query=${search}&language=en-US&page=1&include_adult=false`;
 
     axios
       .get(url)
